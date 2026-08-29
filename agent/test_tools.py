@@ -1,4 +1,4 @@
-﻿import json
+import json
 from pathlib import Path
 
 from rag.vector_store import semantic_search
@@ -49,21 +49,3 @@ def get_email(email_id: int):
             return email
 
     return None
-
-
-def draft_reply(email_id: int, instruction: str):
-    email = get_email(email_id)
-
-    if email is None:
-        return {
-            "error": "Email not found"
-        }
-
-    return {
-        "email_id": email_id,
-        "to": email["from"],
-        "subject": f"Re: {email['subject']}",
-        "original_email": email,
-        "instruction": instruction,
-        "status": "draft_required"
-    }
